@@ -62,6 +62,17 @@ router.get('/posts/:id', async function (req, res) {
     return res.status(404).render('404');
   }
 
+  post.humanReadableDate = post.date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  post.date = post.date.toISOString();
+
+  // console.log(post.date);
+
   res.render('post-detail', { post: post })
 });
 
